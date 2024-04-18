@@ -1,0 +1,67 @@
+.app {
+    font-family: 'Arial', sans-serif; 
+    color: #333; 
+    background-color: #FFFFFF; 
+    width: 100%; 
+    min-height: 100vh; 
+    margin: 0; 
+    padding: 0; 
+}
+
+/* Introdução do Helper */
+.helper-intro {
+    display: flex; /* Utiliza Flexbox para alinhar os elementos filhos lado a lado */
+    align-items: center; /* Centraliza os elementos filhos verticalmente */
+    align-self: center;
+    justify-content: center; /* Centraliza os elementos filhos horizontalmente */
+    gap: 2rem; /* Espaço entre os elementos filhos */
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 2rem 0;
+    margin-left: 2rem;
+}
+
+.helper-icon{
+    display: flex; /* Utiliza Flexbox para alinhar os elementos filhos lado a lado */
+    gap: 3rem; /* Espaço entre os elementos filhos */
+    align-items: center; /* Centraliza os elementos filhos verticalmente */
+}
+
+.helper-intro p {
+    align-self: center;
+    font-weight: bold;
+    font-size: 1.6rem;
+    margin-bottom: 8rem;
+    background-color: #D9D9D9;
+    border-radius: 2rem;
+    padding: 1.5rem;
+}
+
+/* Opções */
+.options {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap; /* Permite que os itens se enfileirem se não houver espaço */
+    gap: 50px; /* Espaçamento entre as opções */
+    margin-top: 20px;
+    }
+
+.option {
+    text-align: center;
+    padding: 2rem;
+    width: 10rem;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
+
+.option img {
+    height: 6rem;
+}
+
+.option p {
+    margin-top: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #003B70
+}
+

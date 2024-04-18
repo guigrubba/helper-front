@@ -1,0 +1,137 @@
+.chatbot {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+} 
+
+.chatbot-bot {
+    padding: 0;
+    border: 3px solid #000000;
+    height: 70vh;
+    width: 90%;
+    border-radius: 0.6rem;
+}
+
+.chatbot-header{
+  display: flex;
+  align-items: start;
+  margin-bottom: 0px;
+}
+
+.chatbot-header img {
+    padding: 0;
+    margin: 0;
+    height: auto; 
+    width: auto; 
+    max-height: 3rem; 
+    margin-left: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 0px;
+  }
+
+.name-chat {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 0.5rem;
+  align-items: center;
+  margin-bottom: 0px;
+}
+
+.chat {
+    padding: 1rem;
+    margin-top: 0rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-radius: 1rem;
+    background-color: #F0F0F0F0
+}
+
+.input-container {
+  margin-top: 1rem;
+  width: 90%;
+  position: relative;
+  font-size: 16px; /* Tamanho da fonte para o input */
+  border: 3px solid #000; /* Borda preta */
+  border-radius: 0.5rem; /* Borda arredondada */
+}
+
+.input-container input[type="text"] {
+  background: none; /* Remove o fundo */
+  border: none; /* Remove a borda */
+  outline: none; /* Remove o destaque de foco */
+  padding: 0; /* Remove o preenchimento */
+  margin: 0; /* Remove as margens */
+  width: auto; /* Largura para o padrão automático */
+  height: auto; /* Altura para o padrão automático */
+  box-shadow: none; /* Remove sombras internas ou externas */
+  border-radius: 0; /* Remove o arredondamento das bordas */
+  box-sizing: content-box; /* O tamanho é calculado apenas com base no conteúdo */
+  font-family: inherit; /* Fonte herdada do elemento pai */
+  font-size: medium; /* Tamanho padrão da fonte */
+  line-height: normal; /* Altura da linha normal */
+  color: inherit; /* Cor do texto herdada */
+  text-align: left; /* Alinhamento do texto padrão */
+  width: 93%;
+  padding: 10px 40px 10px 20px; /* Espaçamento interno: superior, direito, inferior, esquerdo */
+  font-size: inherit; /* Usa o tamanho da fonte do container */
+  box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
+  appearance: none; /* Remover estilo padrão para todos os navegadores, se suportado */
+}
+
+.input-container .arrow-icon {
+  cursor: pointer;
+  position: absolute;
+  height: 70%;
+  right: 15px; /* Posição da seta à direita do input */
+  top: 50%; /* Centraliza a seta verticalmente */
+  transform: translateY(-50%); /* Ajuste fino da posição vertical */
+}
+
+
+
+  
+/* .chatbot-header {
+    background-color: #f0f0f0;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+  
+  .chatbot-header p {
+    margin: 0;
+    padding-left: 10px;
+  }
+  
+  .chatbot-body {
+    height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: white;
+  }
+  
+  .chatbot-footer {
+    padding: 10px;
+    background-color: #f0f0f0;
+    display: flex;
+  }
+  
+  .chatbot-footer input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-right: 10px;
+  }
+  
+  .chatbot-footer button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+  }
+   */

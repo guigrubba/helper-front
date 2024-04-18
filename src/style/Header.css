@@ -1,0 +1,49 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    font-size: 3rem;
+    background-color: #003C70;
+}
+
+.logo_robo {
+    display: flex;
+    margin-left: 2%;
+    align-items: center;
+}
+
+.logo_robo p{
+    font-weight: bold;
+    color: #F58733
+}
+
+.logo_robo p span {
+    font-weight: bold;
+    color: #FFFFFF;
+}
+  
+.logo_robo img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.navigation{
+    margin-right: 2%;
+}
+
+.navigation ul {
+    font-weight: bold;
+    list-style: none;
+    display: flex;
+    gap: 5rem;
+}
+  
+.navigation li {
+    color: white;
+    cursor: pointer;
+}
+
+.navigation .active {
+    border-bottom: 3px solid #F58733;
+}

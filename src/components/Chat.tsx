@@ -7,6 +7,8 @@ import send from "../assets/send.svg";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import React, { useState } from 'react';
+import { waveform } from 'ldrs'
+
 
 interface Message {
   text: string;
@@ -17,7 +19,16 @@ interface Message {
 function Chat() {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState('');
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  waveform.register()
+  
+  // first message
+  const firstMsg = {
+    text: ' Seja bem vindo. Eu sou o IWS helper! Em que eu posso ajudar?',
+    sender: 'bot', // Define o remetente como o usuário por padrão
+    timestamp: new Date().toISOString()
+  };
+  const [messages, setMessages] = useState<Message[]>([firstMsg]);
 
   function handleClick() {
     navigate("/");
@@ -38,10 +49,15 @@ function Chat() {
       };
       setMessages(prevMessages => [...prevMessages, newMessage]);
       setInputValue('');
+      setLoading(true);
     }
 
     // useEffect(() => {
-      axios.get(`http://localhost:8000/ai-helper/about-us?question=${inputValue}`)
+      axios({
+        method: 'post',
+        url: 'http://localhost:8000/ai-helper/about-us',
+        data: {question: inputValue},
+      })
         .then(response => {
           console.log("res" + response.data['response']);
           const newMessage = {
@@ -52,11 +68,12 @@ function Chat() {
           setMessages(prevMessages => [...prevMessages, newMessage]);
           // atualize o estado com os dados recebidos
           // setData(response.data);
-          console.log("messages: " + messages.length)
+          setLoading(false);
         })
         .catch(error => {
           // trate os erros aqui
           console.error('Erro:', error);
+          setLoading(false);
         });
     // }, []);
   }
@@ -86,10 +103,10 @@ function Chat() {
             <img src={logo_robo_2} alt="IWS Logo" />
             <p className="name-chat">ChatBot</p>
           </div>
-          <p className="bot-msg">
+          {/* <p className="bot-msg">
             Seja bem vindo. Eu sou o IWS helper! Em que eu posso ajudar?
-          </p>
-          <div className="chatbot-body">
+          </p> */}
+          <div className="chatbot-body" style={{ maxHeight: '345px', overflowY: 'auto' }}>
             {messages.map((message, index) => (
             <div key={index}>
               {/* <span>{message.sender === 'user' ? 'Você' : 'Bot'}:</span> */}
@@ -101,7 +118,16 @@ function Chat() {
         <div className="input-container">
           <input type="text" placeholder="Digite sua mensagem" value={inputValue} onChange={handleChange}/>
           <div onClick={sendRequest}>
-            <img src={send} className="arrow-icon"></img>
+
+            <img src={send} className="arrow-icon" hidden={loading}></img>
+            <div className="arrow-icon" hidden={!loading}>
+              <l-waveform 
+              size="25"
+              stroke="3"
+              speed="1.5" 
+              color="black" 
+              ></l-waveform>
+            </div>
           </div>
         </div>
       </div>

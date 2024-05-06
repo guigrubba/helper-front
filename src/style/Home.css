@@ -15,10 +15,12 @@
     align-self: center;
     justify-content: center; /* Centraliza os elementos filhos horizontalmente */
     gap: 2rem; /* Espaço entre os elementos filhos */
-    padding: 2rem;
+    padding: 1rem;
+    padding-bottom: 0;
     border-radius: 10px;
-    margin: 2rem 0;
+    margin: 1rem 0;
     margin-left: 2rem;
+    margin-bottom: 0;
 }
 
 .helper-icon{
@@ -30,7 +32,7 @@
 .helper-intro p {
     align-self: center;
     font-weight: bold;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     margin-bottom: 8rem;
     background-color: #D9D9D9;
     border-radius: 2rem;
@@ -49,13 +51,16 @@
 .option {
     text-align: center;
     padding: 2rem;
+    padding-bottom: 0;
     width: 10rem;
     border-radius: 10px;
     background-color: white;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+}
 
 .option img {
-    height: 6rem;
+    height: 5rem;
 }
 
 .option p {

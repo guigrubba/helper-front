@@ -4,7 +4,7 @@ import "../style/Chat.css";
 import logo_robo from "../assets/logo_robo.svg";
 import logo_robo_2 from "../assets/logo_robo_2.svg";
 import send from "../assets/send.svg";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import React, { useState } from 'react';
 import { waveform } from 'ldrs'
@@ -17,14 +17,25 @@ interface Message {
 }
 
 function Chat() {
+  let location = useLocation();
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState('');
   const [loading, setLoading] = useState<boolean>(false);
   waveform.register()
   
+  let textFirstMsg: string;
+  if (location.state.key == 'web-navegation'){
+    textFirstMsg = "<p>Seja bem vindo. Eu sou o IWS helper! Fiquei sabendo que você está precisando de ajuda com a navegação do nosso site, em que eu posso ajudar?</p>"
+  } else if (location.state.key == 'about-us'){
+    textFirstMsg = "<p>Seja bem vindo. Eu sou o IWS helper! Fiquei sabendo que você está com duvidas sobre a empresa, em que eu posso ajudar?</p>"
+  } else if (location.state.key == 'functionalities'){
+    textFirstMsg = "<p>Seja bem vindo. Eu sou o IWS helper! Fiquei sabendo que você gostaria de saber mais sobre os produtos oferecidos pela empresa, em que eu posso ajudar?</p>"
+  } else {
+    textFirstMsg = "<p>Seja bem vindo. Eu sou o IWS helper! Fiquei sabendo que você gostaria de saber mais sobre a empresa, em que eu posso ajudar?</p>"
+  }
   // first message
   const firstMsg = {
-    text: ' Seja bem vindo. Eu sou o IWS helper! Em que eu posso ajudar?',
+    text: textFirstMsg,
     sender: 'bot', // Define o remetente como o usuário por padrão
     timestamp: new Date().toISOString()
   };
@@ -39,24 +50,31 @@ function Chat() {
   }
 
   function sendRequest() {
-    console.log("click: " + inputValue);
-  
+    
+    console.log("click: " + location.state.key);
+    var messagesAux = messages;
+    
     if (inputValue.trim() !== '') {
       const newMessage = {
         text: inputValue,
         sender: 'user', // Define o remetente como o usuário por padrão
         timestamp: new Date().toISOString()
       };
-      setMessages(prevMessages => [...prevMessages, newMessage]);
+      // setMessages(prevMessages => [...prevMessages, newMessage]);
       setInputValue('');
       setLoading(true);
+      messages.push(newMessage)
+      // messagesAux.push(newMessage);
     }
+
+    console.log(JSON.stringify(messagesAux));
+    console.log(messages);
 
     // useEffect(() => {
       axios({
         method: 'post',
-        url: 'http://localhost:8000/ai-helper/about-us',
-        data: {question: inputValue},
+        url: `http://localhost:8000/ai-helper/${location.state.key}`,
+        data: {chatHistory: JSON.stringify(messagesAux)},
       })
         .then(response => {
           console.log("res" + response.data['response']);
@@ -110,7 +128,7 @@ function Chat() {
             {messages.map((message, index) => (
             <div key={index}>
               {/* <span>{message.sender === 'user' ? 'Você' : 'Bot'}:</span> */}
-              <p className={message.sender === 'user' ? 'your-msg' : 'bot-msg'}>{message.text}</p>
+              <p className={message.sender === 'user' ? 'your-msg' : 'bot-msg'} dangerouslySetInnerHTML={{__html: message.text}}></p>
             </div>
           ))}
           </div>

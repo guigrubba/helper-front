@@ -64,7 +64,10 @@
     margin-left: 1rem;
     margin-right: 10rem;
     border-radius: 0.8rem;
-    background-color: #d0dde9
+    background-color: #d0dde9;
+    p{
+      margin: 0;
+    }
 }
 
 .your-msg {

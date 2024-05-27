@@ -8,12 +8,14 @@ import outros from "../assets/outros.svg";
 import sobre from "../assets/sobre.svg";
 import Header from "./Header.tsx";
 import { useNavigate } from "react-router-dom";
+import { key } from "localforage";
 
 function Home() {
   const navigate = useNavigate();
 
-  function handleClick() {
-    navigate("/chat");
+  function handleClick(option: string) {
+    console.log("endpoint: " + option);
+    navigate(`/chat`, { state: {key: option}});
   }
 
   return (
@@ -31,7 +33,7 @@ function Home() {
       <div className="options">
         <div
           className="option"
-          onClick={handleClick}
+          onClick={() => handleClick('web-navegation')}
           style={{ cursor: "pointer" }}
         >
           <img src={navegacao} alt="IWS Logo" />
@@ -39,7 +41,7 @@ function Home() {
         </div>
         <div
           className="option"
-          onClick={handleClick}
+          onClick={() => handleClick('about-us')}
           style={{ cursor: "pointer" }}
         >
           <img src={sobre} alt="IWS Logo" />
@@ -47,7 +49,7 @@ function Home() {
         </div>
         <div
           className="option"
-          onClick={handleClick}
+          onClick={() => handleClick('functionalities')}
           style={{ cursor: "pointer" }}
         >
           <img src={funcionalidade} alt="IWS Logo" />
@@ -55,7 +57,7 @@ function Home() {
         </div>
         <div
           className="option"
-          onClick={handleClick}
+          onClick={() => handleClick('others')}
           style={{ cursor: "pointer" }}
         >
           <img src={outros} alt="IWS Logo" />

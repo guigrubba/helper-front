@@ -77,7 +77,10 @@ function Chat() {
         data: {chatHistory: JSON.stringify(messagesAux)},
       })
         .then(response => {
-          console.log("res" + response.data['response']);
+          if (response.status != 200){
+            response.data['response'] = "Parece que houve um problema interno na API. Tente novamente mais tarde."
+          }
+          console.log("res status: " + response.status);
           const newMessage = {
             text: response.data['response'],
             sender: 'bot', // Define o remetente como o usuário por padrão
@@ -92,6 +95,12 @@ function Chat() {
           // trate os erros aqui
           console.error('Erro:', error);
           setLoading(false);
+          const newMessage = {
+            text: "Parece que estou problemas para conectar com a API. Tente novamente mais tarde.",
+            sender: 'bot', // Define o remetente como o usuário por padrão
+            timestamp: new Date().toISOString()
+          };
+          setMessages(prevMessages => [...prevMessages, newMessage]);
         });
     // }, []);
   }

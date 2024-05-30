@@ -121,7 +121,13 @@
   transform: translateY(-50%); /* Ajuste fino da posição vertical */
 }
 
-
+a {
+  color: white;
+  cursor: pointer;
+  font-family: 'Arial', sans-serif; 
+  font-weight: bold;
+  text-decoration: none;
+}
 
   
 /* .chatbot-header {

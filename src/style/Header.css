@@ -50,3 +50,11 @@
 .navigation .active {
     border-bottom: 3px solid #F58733;
 }
+
+.navigation a {
+    color: white;
+    cursor: pointer;
+    font-family: 'Arial', sans-serif; 
+    font-weight: bold;
+    text-decoration: none;
+  }

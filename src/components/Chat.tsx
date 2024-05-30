@@ -111,7 +111,7 @@ function Chat() {
             <li onClick={handleClick} style={{ cursor: "pointer" }}>
               Home
             </li>
-            <li>Site</li>
+            <li><a href="https://www.iws.com.br/" >Site</a></li>
           </ul>
         </nav>
       </header>

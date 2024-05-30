@@ -14,7 +14,7 @@ function Header() {
       <nav className="navigation">
         <ul>
           <li className="active">Home</li>
-          <li>Site</li>
+          <li><a href="https://www.iws.com.br/" >Site</a></li>
         </ul>
       </nav>
     </header>

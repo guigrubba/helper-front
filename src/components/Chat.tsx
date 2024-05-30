@@ -70,6 +70,8 @@ function Chat() {
     console.log(JSON.stringify(messagesAux));
     console.log(messages);
 
+    let msg = "";
+
     // useEffect(() => {
       axios({
         method: 'post',
@@ -77,30 +79,32 @@ function Chat() {
         data: {chatHistory: JSON.stringify(messagesAux)},
       })
         .then(response => {
-          if (response.status != 200){
-            response.data['response'] = "Parece que houve um problema interno na API. Tente novamente mais tarde."
-          }
           console.log("res status: " + response.status);
-          const newMessage = {
-            text: response.data['response'],
-            sender: 'bot', // Define o remetente como o usuário por padrão
-            timestamp: new Date().toISOString()
-          };
-          setMessages(prevMessages => [...prevMessages, newMessage]);
-          // atualize o estado com os dados recebidos
-          // setData(response.data);
-          setLoading(false);
+          msg = response.data['response'];
+        })
+        .catch(errorCode500 => {
+          console.error('Erro code:', errorCode500.response.status);
+          if (errorCode500.response.status == 500){
+            msg = "Parece que houve um problema interno na API. Tente novamente mais tarde."
+         }
         })
         .catch(error => {
           // trate os erros aqui
           console.error('Erro:', error);
+          console.error('Erro code:', error.code);
           setLoading(false);
+          // let msg;
+          msg = "Parece que estou problemas para conectar com a API. Tente novamente mais tarde."
+        })
+        .finally(() => {
           const newMessage = {
-            text: "Parece que estou problemas para conectar com a API. Tente novamente mais tarde.",
+            text: msg,
             sender: 'bot', // Define o remetente como o usuário por padrão
             timestamp: new Date().toISOString()
           };
           setMessages(prevMessages => [...prevMessages, newMessage]);
+          setLoading(false);
+
         });
     // }, []);
   }

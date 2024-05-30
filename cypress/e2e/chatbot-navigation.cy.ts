@@ -35,7 +35,7 @@ describe('Testando acesso para', () => {
     cy.get('input').type('Olá boa tarde! Você poderia me falar qual a localização da matrix?');
     cy.get('img.arrow-icon').click();
     cy.get('.your-msg').should('contain.text', 'Olá boa tarde! Você poderia me falar qual a localização da matrix?');
-    //colocar response
+    cy.get(':nth-child(3) > .bot-msg').should('contain.text', 'Parece que estou problemas para conectar com a API. Tente novamente mais tarde.')
   });
 
   it('Testing navBar home button', () => {
